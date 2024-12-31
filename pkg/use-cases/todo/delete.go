@@ -1,7 +1,7 @@
 package todo
 
 import (
-	"todolist/pkg/interfaces"
+	interfaces "todolist/pkg/interfaces/repositories"
 
 	"github.com/google/uuid"
 )

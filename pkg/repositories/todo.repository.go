@@ -2,7 +2,7 @@ package repositories
 
 import (
 	"todolist/pkg/database/entities"
-	"todolist/pkg/interfaces"
+	interfaces "todolist/pkg/interfaces/repositories"
 	"todolist/pkg/models"
 
 	"github.com/google/uuid"

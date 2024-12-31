@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"todolist/pkg/dtos/request"
 	"todolist/pkg/dtos/response"
-	"todolist/pkg/interfaces"
+	interfaces "todolist/pkg/interfaces/use-cases"
 	"todolist/pkg/models"
 
 	"github.com/gin-gonic/gin"
