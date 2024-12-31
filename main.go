@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-	"todolist/application"
+	"todolist/pkg/application"
 	"todolist/pkg/database"
 
 	"github.com/gin-gonic/gin"
