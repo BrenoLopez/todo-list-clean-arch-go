@@ -14,10 +14,11 @@ func NewDeleteTodoUseCase(todoRepository interfaces.ITodoRepository) *deleteTodo
 	return &deleteTodo{todoRepository: todoRepository}
 }
 
-func (useCase *deleteTodo) Delete(id uuid.UUID) {
+func (useCase *deleteTodo) Delete(id uuid.UUID) error {
 	err := useCase.todoRepository.Delete(id)
 
 	if err != nil {
-		panic(err)
+		return err
 	}
+	return nil
 }

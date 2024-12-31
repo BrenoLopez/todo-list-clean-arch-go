@@ -5,5 +5,6 @@ up:
 	docker compose up --attach app
 .PHONY: up
 
-app: docker compose up --attach app --build
+app: 
+	docker compose up --attach app --build
 .PHONY: app

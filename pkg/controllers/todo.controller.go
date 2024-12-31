@@ -17,11 +17,11 @@ type ITodoController interface {
 }
 
 type todoController struct {
-	createTodoUseCase interfaces.ITodoUseCase
-	deleteTodoUseCase interfaces.ITodoUseCase
+	createTodoUseCase interfaces.ICreateTodoUseCase
+	deleteTodoUseCase interfaces.IDeleteTodoUseCase
 }
 
-func NewTodoController(createTodoUseCase interfaces.ITodoUseCase, deleteTodoUseCase interfaces.ITodoUseCase) *todoController {
+func NewTodoController(createTodoUseCase interfaces.ICreateTodoUseCase, deleteTodoUseCase interfaces.IDeleteTodoUseCase) *todoController {
 	return &todoController{createTodoUseCase: createTodoUseCase, deleteTodoUseCase: deleteTodoUseCase}
 }
 
@@ -37,10 +37,11 @@ func (todoController *todoController) Create(httpContext *gin.Context) {
 }
 
 func (todoController *todoController) Delete(httpContext *gin.Context) {
-	id := httpContext.Request.URL.Query().Get("id")
+	id := httpContext.Param("id")
 
 	if err := uuid.Validate(id); err != nil {
-		panic(err)
+		httpContext.JSON(http.StatusBadGateway, gin.H{"message": "Invalid UUID!"})
+		return
 	}
 
 	uuid, err := uuid.Parse(id)
@@ -49,5 +50,5 @@ func (todoController *todoController) Delete(httpContext *gin.Context) {
 	}
 	todoController.deleteTodoUseCase.Delete(uuid)
 
-	httpContext.Status(http.StatusNoContent)
+	httpContext.Status(http.StatusOK)
 }
